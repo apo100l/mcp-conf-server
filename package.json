@@ -1,0 +1,57 @@
+{
+  "name": "@apo100l/mcp-conf-server",
+  "version": "0.1.0",
+  "description": "MCP server for Confluence Data Center with PAT, cookie and browser SSO authentication",
+  "type": "module",
+  "main": "build/index.js",
+  "bin": {
+    "mcp-conf-server": "build/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "check": "tsc --noEmit",
+    "test": "npm run check && npm run build",
+    "watch": "tsc --watch",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test",
+    "dev": "tsx src/index.ts",
+    "release:patch": "npm version patch -m \"chore(release): v%s\"",
+    "release:minor": "npm version minor -m \"chore(release): v%s\"",
+    "release:major": "npm version major -m \"chore(release): v%s\""
+  },
+  "keywords": [
+    "mcp",
+    "confluence",
+    "self-hosted"
+  ],
+  "author": "edrich13",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apo100l/mcp-conf-server.git"
+  },
+  "homepage": "https://github.com/apo100l/mcp-conf-server#readme",
+  "bugs": {
+    "url": "https://github.com/apo100l/mcp-conf-server/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "axios": "^1.20.0",
+    "playwright-core": "^1.63.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "files": [
+    "build/**/*",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org/"
+  }
+}
