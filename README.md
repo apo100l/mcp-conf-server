@@ -46,3 +46,28 @@ All tool names use the `conf_` prefix. List tools to inspect exact input schemas
 API reference: https://developer.atlassian.com/server/confluence/rest/latest/
 
 MIT license; retains the upstream license attribution.
+
+## Publishing to npm
+
+The `.github/workflows/publish.yml` workflow publishes `@apo100l/mcp-conf-server` on version tags (`v*.*.*`) or manual dispatch. It installs dependencies, verifies tag/version agreement, runs checks, inspects package contents, and publishes publicly using npm trusted publishing (OIDC).
+
+In npm package settings, configure a GitHub Actions trusted publisher:
+
+- Owner: `apo100l`
+- Repository: `mcp-conf-server`
+- Workflow filename: `publish.yml`
+- Environment: leave empty
+- Allow publishing
+
+If the package does not yet exist on npm, publish its first version locally with an authorized npm account (`npm login`, then `npm publish --access public`), then configure the trusted publisher. No `NPM_TOKEN` repository secret is needed for subsequent workflow releases.
+
+For the next release:
+
+```sh
+npm run release:patch
+git push origin main --follow-tags
+```
+
+For an initial tag matching the existing version, use `git tag v0.1.0` and `git push origin v0.1.0` only if that version has not already been published. Published npm versions cannot be overwritten; manual dispatch also attempts to publish the version in `package.json`.
+
+Reference: https://docs.npmjs.com/trusted-publishers/
