@@ -1,6 +1,6 @@
 {
   "name": "@apo100l/mcp-conf-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for Confluence Data Center with PAT, cookie and browser SSO authentication",
   "type": "module",
   "main": "build/index.js",
